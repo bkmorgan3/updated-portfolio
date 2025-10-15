@@ -1,5 +1,36 @@
-import { HeroQuery, ProjectsQuery, SkillsQuery } from "../types";
+import { HeroQuery, ProjectPageQuery, ProjectsQuery, SkillsQuery } from "../types";
 import { contentGqlFetcher } from "./fetch";
+
+export const getContentForProjectPage = async (slug: string) => {
+    console.log('S', slug)
+    const query = `#graphql
+        query ProjectPageCollection($where: ProjectPageFilter) {
+            projectPageCollection(where: $where) {
+                items {
+                    title
+                    slug
+                    project {
+                        title
+                        description
+                        image {
+                            url
+                        }
+                    }
+                    body {
+                        json
+                    }
+                }
+            }
+        }
+    `
+
+    const data = await contentGqlFetcher<ProjectPageQuery>({ query, variables: { where: { slug } } })
+
+    if (!data) {
+        throw new Error('Could not fetch Project Page content')
+    }
+    return data
+}
 
 export const getContentForProjectsSection = async () => {
     const query = `#graphql 
