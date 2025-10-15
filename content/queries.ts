@@ -1,5 +1,27 @@
 import { contentGqlFetcher } from "./fetch";
 
+export const getContentForSkillsSection = async () => {
+    const query = `#graphql
+        query skillsSectionCollection {
+            items {
+            skillsHeading
+            skillsCollection {
+                items {
+                listItemName
+                }
+            }
+        }
+    }
+    `
+
+    const data = await contentGqlFetcher({ query })
+
+    if (!data) {
+        throw new Error('Problem getting Skills Data')
+    }
+    return data
+}
+
 export const getContentForHero = async () => {
     const query = `#graphql
         query PortfolioHeroCollection {
