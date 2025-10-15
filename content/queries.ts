@@ -2,18 +2,19 @@ import { contentGqlFetcher } from "./fetch";
 
 export const getContentForSkillsSection = async () => {
     const query = `#graphql
-        query skillsSectionCollection {
-            items {
-            skillsHeading
-            skillsCollection {
+        query SkillsSectionCollection {
+            skillsSectionCollection {
                 items {
-                listItemName
+                skillsHeading
+                skillsCollection {
+                    items {
+                    listItemName
+                    }
                 }
             }
         }
     }
     `
-
     const data = await contentGqlFetcher({ query })
 
     if (!data) {
