@@ -10,3 +10,16 @@ export type HeroQuery = {
         }[]
     }
 }
+
+export type SkillsQuery = {
+    skillsSectionCollection: {
+        items: {
+            skillsHeading: string
+            skillsCollection: {
+            items: {
+                listItemName: string
+            }[]
+            }
+        }[]
+    }
+}

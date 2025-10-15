@@ -1,4 +1,4 @@
-import { HeroQuery } from "../types";
+import { HeroQuery, SkillsQuery } from "../types";
 import { contentGqlFetcher } from "./fetch";
 
 export const getContentForSkillsSection = async () => {
@@ -16,7 +16,7 @@ export const getContentForSkillsSection = async () => {
         }
     }
     `
-    const data = await contentGqlFetcher({ query })
+    const data = await contentGqlFetcher<SkillsQuery>({ query })
 
     if (!data) {
         throw new Error('Problem getting Skills Data')
