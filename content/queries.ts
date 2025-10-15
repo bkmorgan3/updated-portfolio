@@ -1,5 +1,32 @@
-import { HeroQuery, SkillsQuery } from "../types";
+import { HeroQuery, ProjectsQuery, SkillsQuery } from "../types";
 import { contentGqlFetcher } from "./fetch";
+
+export const getContentForProjectsSection = async () => {
+    const query = `#graphql 
+        query ProjectSectionCollection {
+            projectSectionCollection {
+                items {
+                heading
+                projectsCollection {
+                    items {
+                        title
+                        description
+                        link
+                        image {
+                            url
+                        }
+                    }
+                  }
+                }
+            }
+        }
+    `
+    const data = await contentGqlFetcher<ProjectsQuery>({ query })
+    if (!data) {
+        throw new Error('Problem fetching Projects')
+    }
+    return data
+}
 
 export const getContentForSkillsSection = async () => {
     const query = `#graphql
