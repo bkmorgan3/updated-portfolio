@@ -1,3 +1,4 @@
+import { HeroQuery } from "../types";
 import { contentGqlFetcher } from "./fetch";
 
 export const getContentForSkillsSection = async () => {
@@ -38,7 +39,7 @@ export const getContentForHero = async () => {
         }
     }
     `
-    const data = await contentGqlFetcher({ query })
+    const data = await contentGqlFetcher<HeroQuery>({ query })
 
     if (!data) {
         throw new Error('There is not Hero Data')
