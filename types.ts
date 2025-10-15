@@ -23,3 +23,21 @@ export type SkillsQuery = {
         }[]
     }
 }
+
+export type ProjectsQuery = {
+    projectSectionCollection: {
+                items: {
+                heading: string
+                projectsCollection: {
+                    items: {
+                        title: string
+                        description: string
+                        link: string
+                        image: {
+                            url: string
+                        }
+                    }[]
+                  }
+                }[]
+            }
+}
