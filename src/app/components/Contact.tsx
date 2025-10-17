@@ -2,7 +2,6 @@ import {
   getContentForContactSection,
   getLogoContent,
 } from '../../../content/queries';
-import Link from 'next/link';
 import Image from 'next/image';
 
 export default async function ContactSection() {
