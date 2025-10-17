@@ -1,9 +1,13 @@
-import { HeroQuery, ProjectPageQuery, ProjectsQuery, SkillsQuery } from "../types";
-import { contentGqlFetcher } from "./fetch";
+import {
+  HeroQuery,
+  ProjectPageQuery,
+  ProjectsQuery,
+  SkillsQuery,
+} from '../types';
+import { contentGqlFetcher } from './fetch';
 
 export const getContentForProjectPage = async (slug: string) => {
-    console.log('S', slug)
-    const query = `#graphql
+  const query = `#graphql
         query ProjectPageCollection($where: ProjectPageFilter) {
             projectPageCollection(where: $where) {
                 items {
@@ -22,18 +26,21 @@ export const getContentForProjectPage = async (slug: string) => {
                 }
             }
         }
-    `
+    `;
 
-    const data = await contentGqlFetcher<ProjectPageQuery>({ query, variables: { where: { slug } } })
+  const data = await contentGqlFetcher<ProjectPageQuery>({
+    query,
+    variables: { where: { slug } },
+  });
 
-    if (!data) {
-        throw new Error('Could not fetch Project Page content')
-    }
-    return data
-}
+  if (!data) {
+    throw new Error('Could not fetch Project Page content');
+  }
+  return data;
+};
 
 export const getContentForProjectsSection = async () => {
-    const query = `#graphql 
+  const query = `#graphql 
         query ProjectSectionCollection {
             projectSectionCollection {
                 items {
@@ -41,6 +48,7 @@ export const getContentForProjectsSection = async () => {
                 projectsCollection {
                     items {
                         title
+                         slug
                         description
                         link
                         image {
@@ -51,16 +59,16 @@ export const getContentForProjectsSection = async () => {
                 }
             }
         }
-    `
-    const data = await contentGqlFetcher<ProjectsQuery>({ query })
-    if (!data) {
-        throw new Error('Problem fetching Projects')
-    }
-    return data
-}
+    `;
+  const data = await contentGqlFetcher<ProjectsQuery>({ query });
+  if (!data) {
+    throw new Error('Problem fetching Projects');
+  }
+  return data;
+};
 
 export const getContentForSkillsSection = async () => {
-    const query = `#graphql
+  const query = `#graphql
         query SkillsSectionCollection {
             skillsSectionCollection {
                 items {
@@ -73,17 +81,17 @@ export const getContentForSkillsSection = async () => {
             }
         }
     }
-    `
-    const data = await contentGqlFetcher<SkillsQuery>({ query })
+    `;
+  const data = await contentGqlFetcher<SkillsQuery>({ query });
 
-    if (!data) {
-        throw new Error('Problem getting Skills Data')
-    }
-    return data
-}
+  if (!data) {
+    throw new Error('Problem getting Skills Data');
+  }
+  return data;
+};
 
 export const getContentForHero = async () => {
-    const query = `#graphql
+  const query = `#graphql
         query PortfolioHeroCollection {
             portfolioHeroCollection {
                 items {
@@ -96,11 +104,11 @@ export const getContentForHero = async () => {
             }
         }
     }
-    `
-    const data = await contentGqlFetcher<HeroQuery>({ query })
+    `;
+  const data = await contentGqlFetcher<HeroQuery>({ query });
 
-    if (!data) {
-        throw new Error('There is not Hero Data')
-    }
-    return data
-}
+  if (!data) {
+    throw new Error('There is not Hero Data');
+  }
+  return data;
+};
