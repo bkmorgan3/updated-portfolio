@@ -1,7 +1,6 @@
 import Hero from './components/Hero';
 import SkillsSection from './components/Skills';
 import ProjectsSection from './components/Projects';
-import ContactSection from './components/Contact';
 
 export default function Home() {
   return (
@@ -9,7 +8,6 @@ export default function Home() {
       <Hero />
       <SkillsSection />
       <ProjectsSection />
-      <ContactSection />
     </main>
   );
 }
