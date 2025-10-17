@@ -13,10 +13,17 @@ export const getContentForContactSection = async () => {
         query ContactSectiionCollection {
             contactSectiionCollection {
                 items {
-                    title
-                    subheading
+                title
+                location
+                subheading
+                callToActionsCollection {
+                    items {
+                    label
+                    link
+                    }
                 }
             }
+        }
     }
     `;
   const data = await contentGqlFetcher<ContactQuery>({ query });

@@ -67,6 +67,13 @@ export type ContactQuery = {
     items: {
       title: string;
       subheading: string;
+      location: string;
+      callToActionsCollection: {
+        items: {
+          label: string;
+          link: string;
+        }[];
+      };
     }[];
   };
 };
