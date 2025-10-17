@@ -83,6 +83,7 @@ export type LogoQuery = {
     items: {
       title: string;
       url: string;
+      description: string;
     }[];
   };
 };

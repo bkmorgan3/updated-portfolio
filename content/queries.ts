@@ -16,6 +16,7 @@ export const getLogoContent = async () => {
                 items {
                     title
                     url
+                    description
                 }
             }
     }
