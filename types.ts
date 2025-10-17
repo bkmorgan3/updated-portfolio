@@ -61,3 +61,12 @@ export type ProjectPageQuery = {
     }[];
   };
 };
+
+export type ContactQuery = {
+  contactSectiionCollection: {
+    items: {
+      title: string;
+      subheading: string;
+    }[];
+  };
+};

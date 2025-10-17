@@ -1,10 +1,31 @@
+// import 'server-only';
 import {
+  ContactQuery,
   HeroQuery,
   ProjectPageQuery,
   ProjectsQuery,
   SkillsQuery,
 } from '../types';
 import { contentGqlFetcher } from './fetch';
+
+export const getContentForContactSection = async () => {
+  const query = `#graphql 
+        query ContactSectiionCollection {
+            contactSectiionCollection {
+                items {
+                    title
+                    subheading
+                }
+            }
+    }
+    `;
+  const data = await contentGqlFetcher<ContactQuery>({ query });
+
+  if (!data) {
+    throw new Error('Trouble fetching Contact Section');
+  }
+  return data;
+};
 
 export const getContentForProjectPage = async (slug: string) => {
   const query = `#graphql
