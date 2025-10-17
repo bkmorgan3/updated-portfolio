@@ -1,0 +1,23 @@
+ 
+    build
+    dist
+    package-lock.json
+    yarn.lock
+    .env
+    .env.local
+
+     node_modules
+    .next
+    .husky
+    coverage
+    .prettierignore
+    .stylelintignore
+    .eslintignore
+    stories
+    storybook-static
+    *.log
+    playwright-report
+    .nyc_output
+    test-results
+    junit.xml
+    docs

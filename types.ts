@@ -41,3 +41,22 @@ export type ProjectsQuery = {
                 }[]
             }
 }
+
+export type ProjectPageQuery = {
+    projectPageCollection: {
+                items: {
+                    title: string
+                    slug: string
+                    project: {
+                        title: string
+                        description: string
+                        image: {
+                            url: string
+                        }
+                    }
+                    body: {
+                        json: JSON
+                    }
+                }[]
+            }
+}
