@@ -77,3 +77,12 @@ export type ContactQuery = {
     }[];
   };
 };
+
+export type LogoQuery = {
+  assetCollection: {
+    items: {
+      title: string;
+      url: string;
+    }[];
+  };
+};

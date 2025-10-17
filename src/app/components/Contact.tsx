@@ -1,9 +1,16 @@
-import { getContentForContactSection } from '../../../content/queries';
+import {
+  getContentForContactSection,
+  getLogoContent,
+} from '../../../content/queries';
+import Link from 'next/link';
+import Image from 'next/image';
 
 export default async function ContactSection() {
   const data = await getContentForContactSection();
   const content = data.contactSectiionCollection.items[0];
   const contacts = content.callToActionsCollection.items;
+  const logos = await getLogoContent();
+  const icons = logos.assetCollection.items;
   return (
     <section className='border-t border-gray-800 px-4 py-16'>
       <div className='mx-auto max-w-2xl space-y-6 text-center'>
@@ -69,7 +76,22 @@ export default async function ContactSection() {
 
         {/* Social Links */}
         <div className='flex justify-center gap-6'>
-          <a
+          {icons.map((logo) => (
+            <Link
+              key={logo.title}
+              href={`${'/'}`}
+              className='text-gray-400 transition-colors hover:text-white'
+            >
+              {logo.title}
+              <Image
+                src={`${logo.url}`}
+                alt={`${logo.title}`}
+                width={24}
+                height={24}
+              />
+            </Link>
+          ))}
+          {/* <a
             href='https://github.com'
             target='_blank'
             rel='noopener noreferrer'
@@ -98,7 +120,7 @@ export default async function ContactSection() {
             <svg className='h-6 w-6' fill='currentColor' viewBox='0 0 24 24'>
               <path d='M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z' />
             </svg>
-          </a>
+          </a> */}
         </div>
       </div>
     </section>

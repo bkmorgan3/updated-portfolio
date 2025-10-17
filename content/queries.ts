@@ -5,8 +5,34 @@ import {
   ProjectPageQuery,
   ProjectsQuery,
   SkillsQuery,
+  LogoQuery,
 } from '../types';
 import { contentGqlFetcher } from './fetch';
+
+export const getLogoContent = async () => {
+  const query = `#graphql 
+        query AssetCollection($where: AssetFilter) {
+            assetCollection(where: $where) {
+                items {
+                    title
+                    url
+                }
+            }
+    }
+    `;
+  const data = await contentGqlFetcher<LogoQuery>({
+    query,
+    variables: {
+      where: {
+        title_contains: 'portfolio',
+      },
+    },
+  });
+  if (!data) {
+    throw new Error('Problem fetching contact icons');
+  }
+  return data;
+};
 
 export const getContentForContactSection = async () => {
   const query = `#graphql 
