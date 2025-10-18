@@ -61,3 +61,37 @@ export type ProjectPageQuery = {
     }[];
   };
 };
+
+export type ContactQuery = {
+  contactSectiionCollection: {
+    items: {
+      title: string;
+      subheading: string;
+      location: string;
+      callToActionsCollection: {
+        items: {
+          label: string;
+          link: string;
+        }[];
+      };
+    }[];
+  };
+};
+
+export type LogoQuery = {
+  assetCollection: {
+    items: {
+      title: string;
+      url: string;
+      description: string;
+    }[];
+  };
+};
+
+export type ResumeQuery = {
+  assetCollection: {
+    items: {
+      url: string;
+    }[];
+  };
+};

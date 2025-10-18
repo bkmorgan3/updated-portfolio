@@ -1,10 +1,87 @@
+// import 'server-only';
 import {
+  ContactQuery,
   HeroQuery,
   ProjectPageQuery,
   ProjectsQuery,
   SkillsQuery,
+  LogoQuery,
+  ResumeQuery,
 } from '../types';
 import { contentGqlFetcher } from './fetch';
+
+export const getResume = async () => {
+  const query = `#graphql
+        query AssetCollection($where: AssetFilter) {
+            assetCollection(where: $where) {
+                items {
+                    url
+                }
+            }
+        }
+    `;
+  const data = contentGqlFetcher<ResumeQuery>({
+    query,
+    variables: { where: { title_contains: 'resume' } },
+  });
+
+  if (!data) {
+    throw new Error('Trouble getting Resume');
+  }
+  return data;
+};
+
+export const getLogoContent = async () => {
+  const query = `#graphql 
+        query AssetCollection($where: AssetFilter) {
+            assetCollection(where: $where) {
+                items {
+                    title
+                    url
+                    description
+                }
+            }
+    }
+    `;
+  const data = await contentGqlFetcher<LogoQuery>({
+    query,
+    variables: {
+      where: {
+        title_contains: 'portfolio',
+      },
+    },
+  });
+  if (!data) {
+    throw new Error('Problem fetching contact icons');
+  }
+  return data;
+};
+
+export const getContentForContactSection = async () => {
+  const query = `#graphql 
+        query ContactSectiionCollection {
+            contactSectiionCollection {
+                items {
+                title
+                location
+                subheading
+                callToActionsCollection {
+                    items {
+                    label
+                    link
+                    }
+                }
+            }
+        }
+    }
+    `;
+  const data = await contentGqlFetcher<ContactQuery>({ query });
+
+  if (!data) {
+    throw new Error('Trouble fetching Contact Section');
+  }
+  return data;
+};
 
 export const getContentForProjectPage = async (slug: string) => {
   const query = `#graphql
