@@ -36,12 +36,13 @@ export default async function ProjectsSection() {
                   {project.description}
                 </p>
                 <div className='flex gap-2'>
-                  <Link
-                    href={`/`}
+                  <a
+                    target='_blank'
+                    href={`${project.link}`}
                     className='text-sm font-medium text-blue-400 hover:text-blue-300 sm:text-base'
                   >
                     View Project →
-                  </Link>
+                  </a>
                 </div>
               </div>
             </div>
