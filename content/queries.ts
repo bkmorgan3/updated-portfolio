@@ -6,8 +6,30 @@ import {
   ProjectsQuery,
   SkillsQuery,
   LogoQuery,
+  ResumeQuery,
 } from '../types';
 import { contentGqlFetcher } from './fetch';
+
+export const getResume = async () => {
+  const query = `#graphql
+        query AssetCollection($where: AssetFilter) {
+            assetCollection(where: $where) {
+                items {
+                    url
+                }
+            }
+        }
+    `;
+  const data = contentGqlFetcher<ResumeQuery>({
+    query,
+    variables: { where: { title_contains: 'resume' } },
+  });
+
+  if (!data) {
+    throw new Error('Trouble getting Resume');
+  }
+  return data;
+};
 
 export const getLogoContent = async () => {
   const query = `#graphql 

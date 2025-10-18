@@ -87,3 +87,11 @@ export type LogoQuery = {
     }[];
   };
 };
+
+export type ResumeQuery = {
+  assetCollection: {
+    items: {
+      url: string;
+    }[];
+  };
+};

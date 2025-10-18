@@ -1,6 +1,7 @@
 import {
   getContentForContactSection,
   getLogoContent,
+  getResume,
 } from '../../../content/queries';
 import Image from 'next/image';
 
@@ -10,6 +11,8 @@ export default async function ContactSection() {
   const contacts = content.callToActionsCollection.items;
   const logos = await getLogoContent();
   const icons = logos.assetCollection.items;
+  const doc = await getResume();
+  const resume = doc?.assetCollection.items[0];
 
   return (
     <section className='border-t border-gray-800 px-4 py-16'>
@@ -44,7 +47,7 @@ export default async function ContactSection() {
         {/* Contact Buttons */}
         <div className='flex flex-col justify-center gap-4 sm:flex-row'>
           <a
-            href='mailto:david@example.com'
+            href={`${contacts[0].link}`}
             className='inline-flex items-center justify-center gap-2 rounded bg-blue-600 px-6 py-2 font-medium text-white transition-colors hover:bg-blue-700'
           >
             <svg className='h-5 w-5' fill='currentColor' viewBox='0 0 20 20'>
@@ -54,7 +57,7 @@ export default async function ContactSection() {
             {contacts[0].label}
           </a>
           <a
-            href='/resume.pdf'
+            href={`${resume?.url}`}
             target='_blank'
             className='inline-flex items-center justify-center gap-2 rounded border border-gray-600 px-6 py-2 font-medium text-gray-300 transition-colors hover:bg-gray-800'
           >
