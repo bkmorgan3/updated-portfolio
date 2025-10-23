@@ -1,3 +1,4 @@
+import { fetchWeather } from '../../../content/fetch';
 import {
   getContentForContactSection,
   getLogoContent,
@@ -13,6 +14,7 @@ export default async function ContactSection() {
   const icons = logos.assetCollection.items;
   const doc = await getResume();
   const resume = doc?.assetCollection.items[0];
+  const temp = await fetchWeather();
 
   return (
     <section className='border-t border-gray-800 px-4 py-16'>
@@ -41,7 +43,9 @@ export default async function ContactSection() {
               d='M15 11a3 3 0 11-6 0 3 3 0 016 0z'
             />
           </svg>
-          <span>{content.location}</span>
+          <span>
+            {content.location} where the temperature is {temp} F
+          </span>
         </div>
 
         {/* Contact Buttons */}
