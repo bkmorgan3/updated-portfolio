@@ -1,6 +1,5 @@
 import Image from 'next/image';
 import { getContentForProjectsSection } from '../../../content/queries';
-import Link from 'next/link';
 
 export default async function ProjectsSection() {
   const data = await getContentForProjectsSection();

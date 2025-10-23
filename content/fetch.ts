@@ -31,3 +31,12 @@ export const contentGqlFetcher = async <T>({
   }
   return data as T;
 };
+
+export const fetchWeather = async () => {
+  const res = await fetch(
+    `https://api.openweathermap.org/data/2.5/weather?q=${'los angeles'}&appid=${process.env.WEATHER_KEY}&units=imperial`
+  );
+  const data = await res.json();
+  console.log(data);
+  return data;
+};
