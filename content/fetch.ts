@@ -34,7 +34,8 @@ export const contentGqlFetcher = async <T>({
 
 export const fetchWeather = async () => {
   const res = await fetch(
-    `https://api.openweathermap.org/data/2.5/weather?q=${'los angeles'}&appid=${process.env.WEATHER_KEY}&units=imperial`
+    `https://api.openweathermap.org/data/2.5/weather?q=${'los angeles'}&appid=${process.env.WEATHER_KEY}&units=imperial`,
+    { cache: 'no-store' }
   );
   const data = await res.json();
   return data;
