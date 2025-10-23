@@ -45,7 +45,8 @@ export default async function ContactSection() {
             />
           </svg>
           <span>
-            {content.location} where the temperature is {curr} F
+            {content.location} where the temperature is {Math.round(curr)}&deg;
+            F
           </span>
         </div>
 
