@@ -15,6 +15,7 @@ export default async function ContactSection() {
   const doc = await getResume();
   const resume = doc?.assetCollection.items[0];
   const temp = await fetchWeather();
+  const curr = temp?.main.temp;
 
   return (
     <section className='border-t border-gray-800 px-4 py-16'>
@@ -44,7 +45,7 @@ export default async function ContactSection() {
             />
           </svg>
           <span>
-            {content.location} where the temperature is {temp} F
+            {content.location} where the temperature is {curr} F
           </span>
         </div>
 

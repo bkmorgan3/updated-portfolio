@@ -37,5 +37,5 @@ export const fetchWeather = async () => {
     `https://api.openweathermap.org/data/2.5/weather?q=${'los angeles'}&appid=${process.env.WEATHER_KEY}&units=imperial`
   );
   const data = await res.json();
-  return data.main.temp;
+  return data;
 };
